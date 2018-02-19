@@ -52,6 +52,7 @@ abstract class CommonDevice extends CommonDropdown {
    // From CommonDBTM
    public $dohistory           = true;
 
+   public $fields              = array();
 
    static function getTypeName($nb = 0) {
       return _n('Component', 'Components', $nb);
@@ -138,12 +139,15 @@ abstract class CommonDevice extends CommonDropdown {
       }
    }
 
+   function setAdditionalFields($fields) {
+	$this->fields = $fields;
+   }
 
    function getAdditionalFields() {
 
-      return [['name'  => 'manufacturers_id',
+      return array_merge([['name'  => 'manufacturers_id',
                          'label' => __('Manufacturer'),
-                         'type'  => 'dropdownValue']];
+                         'type'  => 'dropdownValue']], $this->fields);
    }
 
    /**
