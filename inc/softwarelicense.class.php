@@ -332,7 +332,12 @@ class SoftwareLicense extends CommonTreeDropdown {
                            'entity' => $this->fields['entities_id'],
                            'used'   => (($ID > 0) ? getSonsOf($this->getTable(), $ID) : []),
                            'condition' => "`softwares_id`='".$this->fields['softwares_id']."'"]);
-      echo "</td></tr>";
+      echo "</td>";
+      echo "<td>" . __('Metric', 'sam') . "</td>";
+      echo "<td>";
+      PluginSamMetric::dropdown(['value' => $this->fields['plugin_sam_metrics_id'],
+                        'name' => 'plugin_sam_metrics_id']);
+      echo "</td></tr>\n";
 
       echo "<tr class='tab_bg_1'>";
       echo "<td>" . __('Location') . "</td><td>";
