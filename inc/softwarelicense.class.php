@@ -84,6 +84,11 @@ class SoftwareLicense extends CommonTreeDropdown {
             return false;
       }
 
+      if (!isset($this->input['plugin_sam_metrics_id']) || !$this->input['plugin_sam_metrics_id']) {
+         Session::addMessageAfterRedirect(__("Please select a metric for this license", 'sam'), true, ERROR, true);
+         return false;
+      }
+
       if (isset($input["id"]) && ($input["id"] > 0)) {
          $input["_oldID"] = $input["id"];
       }
@@ -105,6 +110,11 @@ class SoftwareLicense extends CommonTreeDropdown {
    function prepareInputForUpdate($input) {
 
       $input = parent::prepareInputForUpdate($input);
+
+      if (!isset($this->input['plugin_sam_metrics_id']) || !$this->input['plugin_sam_metrics_id']) {
+         Session::addMessageAfterRedirect(__("Please select a metric for this license", 'sam'), true, ERROR, true);
+         return false;
+      }
 
       // Update number : compute validity indicator
       if (isset($input['number'])) {
